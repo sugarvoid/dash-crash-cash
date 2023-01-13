@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7eb3uq58kjes"]
+
+[ext_resource type="Script" path="res://game/player/player.gd" id="1_agkpn"]
+[ext_resource type="Texture2D" uid="uid://caim5kqcgulns" path="res://game/player/tile_0096.png" id="2_y58dg"]
+[ext_resource type="Texture2D" uid="uid://cx1xu5i3mgbhm" path="res://game/player/tile_0104.png" id="3_mu3wu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igdsy"]
+size = Vector2(15, 15)
+
+[sub_resource type="Animation" id="Animation_f6vv4"]
+resource_name = "swing_sword"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Sword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.5708, 1.5708, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5vlc"]
+_data = {
+"swing_sword": SubResource("Animation_f6vv4")
+}
+
+[node name="Player" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_agkpn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_igdsy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_y58dg")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sword" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1, 4)
+texture = ExtResource("3_mu3wu")
+offset = Vector2(8.558, -6.844)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 12)
+collide_with_areas = true
+
+[node name="AttackZone" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackZone"]
+position = Vector2(-3, 0)
+polygon = PackedVector2Array(12, 0, 25, -10, 29, -5, 30, 0, 29, 4, 25, 9)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r5vlc")
+}
+
+[node name="TrmMove" type="Timer" parent="."]
