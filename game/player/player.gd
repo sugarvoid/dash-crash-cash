@@ -28,7 +28,7 @@ func _ready() -> void:
 	self.position += Vector2.ONE * TILE_SIZE/2
 	self.moving_state = MOVING_DIR.NONE
 	self._connect_signals()
-	self.trm_move.start(0.09)
+	self.trm_move.start(0.4)
 	
 
 func _connect_signals() -> void:
@@ -130,7 +130,7 @@ func _move2() -> void:
 		MOVING_DIR.UP:
 			current_dir = Vector2.UP
 	
-	self.position += current_dir * TILE_SIZE 
+	self.position += current_dir * TILE_SIZE
 	
 
 
