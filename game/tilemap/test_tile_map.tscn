@@ -7,6 +7,7 @@ texture = ExtResource("1_cvi8s")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/custom_data_0 = true
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
@@ -20,6 +21,8 @@ texture = ExtResource("1_cvi8s")
 
 [sub_resource type="TileSet" id="TileSet_jeujh"]
 physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "is_safe"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_ran2m")
 
 [node name="TestTileMap" type="TileMap"]

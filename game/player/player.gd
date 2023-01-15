@@ -21,9 +21,15 @@ enum MOVING_DIR {
 	RIGHT
 }
 
+var movement_tween: Tween
 var moving_state: MOVING_DIR
 
+
+var last_pos
+
+
 func _ready() -> void:
+	
 	self.position = self.position.snapped(Vector2.ONE * TILE_SIZE)
 	self.position += Vector2.ONE * TILE_SIZE/2
 	self.moving_state = MOVING_DIR.NONE
@@ -115,6 +121,7 @@ func _attack() -> void:
 	print('attack')
 
 func _move2() -> void:
+	
 	var current_dir: Vector2
 	
 	#self.global_position = self.global_position.snapped(Vector2.ONE * TILE_SIZE)
@@ -130,7 +137,22 @@ func _move2() -> void:
 		MOVING_DIR.UP:
 			current_dir = Vector2.UP
 	
-	self.position += current_dir * TILE_SIZE
+	
+	var new_pos = self.position + (current_dir * TILE_SIZE)
+	
+	###print(new_pos)
+	
+	if last_pos != new_pos:
+		movement_tween = create_tween()
+		
+		movement_tween.tween_property(self, "position", new_pos, 0.05)
+#		movement_tween.tween_property(self, "scale", Vector2(1.5, 1.5), 0.025)
+#		movement_tween.tween_property(self, "scale", Vector2(1, 1), 0.025)
+		movement_tween.play()
+		
+		self.last_pos = new_pos
+	
+	#self.position += current_dir * TILE_SIZE
 	
 
 
