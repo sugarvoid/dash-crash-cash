@@ -17,10 +17,10 @@ current = true
 position_smoothing_speed = 16.0
 
 [node name="Player" parent="." instance=ExtResource("1_l8uua")]
-position = Vector2(36, 26)
+position = Vector2(39, 38)
 
 [node name="Crate" parent="." instance=ExtResource("4_ut8vq")]
-position = Vector2(118, 23)
+position = Vector2(137, 38)
 
 [node name="Crate2" parent="." instance=ExtResource("4_ut8vq")]
 position = Vector2(-17, -173)
